@@ -1,0 +1,29 @@
+<%- include('head.ejs') %>
+<main>
+    <img src="<%= data.img %>">
+    <ul>
+        <li>Age: <%= data.age %> </li>
+        <li>Gender: <%= data.age %> </li>
+        <% if(data.smile >= 0.5){ %>
+        <li>Smiling: Yes</li>
+        <% } else{ %>
+        <li>Smiling: No</li>
+        <% } %>
+        <% if(data.facialHair.beard >= 0.5){ %>
+        <li>Beard: Yes</li>
+        <% } else{ %>
+        <li>Beard: No</li>
+        <% } %>
+        <% if(data.facialHair.moustache > 0.5){ %>
+        <li>Moustache: Yes</li>
+        <% } else{ %>
+        <li>Moustache: No</li>
+        <% } %>
+        <% if(data.glasses === "NoGlasses") { %>
+        <li>Glasses: No</li>
+        <% } else{ %>
+        <li>Glasses: Yes</li>
+        <% } %>
+    </ul>
+</main>
+<%- include('foot.ejs') %>

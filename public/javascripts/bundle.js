@@ -15,7 +15,6 @@ const api = {
                 // Success handler
                 const response = await fetch(reqSettings);
                 data = await response.json();
-
                 mouse.onMouseMovement(data);
 
 
@@ -45,6 +44,7 @@ const domElements = {
     loadingText: document.querySelector('.text'),
     heading: document.createElement("h1"),
     div: document.createElement("div"),
+    link:  document.createElement("a"),
     placeholder: document.createElement("img"),
     container: document.querySelector('main'),
 }
@@ -55,8 +55,11 @@ const domElements = require('./dom.js');
 
 const images = {
     count: 0,
-    changeImages(obj) {
+    changeImages(obj, totalPosition) {
         let img = document.querySelector(".placeholder");
+        let link = document.querySelector(".profile-link");
+        console.log(typeof totalPosition)
+        link.href = /portret/ + (totalPosition + this.count);
         img.src = obj[this.count].img;
         this.count += 1;
 
@@ -74,9 +77,11 @@ const domElements = require('./dom.js');
     const app = {
         init() {
             domElements.placeholder.setAttribute("class", "placeholder");
+            domElements.link.setAttribute("class", "profile-link");
             domElements.heading.appendChild(document.createTextNode("Move your mouse"));
             domElements.container.appendChild(domElements.heading);
-            domElements.div.appendChild(domElements.placeholder);
+            domElements.link.appendChild(domElements.placeholder);
+            domElements.div.appendChild(domElements.link);
             domElements.container.appendChild(domElements.div);
             api.handleRequest()
             window.addEventListener('resize', (event) => {
@@ -84,8 +89,10 @@ const domElements = require('./dom.js');
             });
         }
     }
+    if (domElements.container.classList.contains('index')) {
+        app.init();
+    }
 
-    app.init();
 })();
 
 
@@ -101,27 +108,30 @@ const mouse = {
                 this.mousePosition = 1;
                 clearInterval(domElements.timeOut)
                 images.count = 0;
+                let objectsBefore  = 0;
                 domElements.timeOut = setInterval(() => {
-                    images.changeImages(collection.left);
-                }, 500);
+                    images.changeImages(collection.left, objectsBefore);
+                }, 1000);
             }
         } else if (domElements.halfWidth + 100 < event.pageX) {
             if (this.mousePosition !== -1) {
                 this.mousePosition = -1;
                 clearInterval(domElements.timeOut)
                 images.count = 0;
+                let objectsBefore  = collection.left.length + collection.center.length;
                 domElements.timeOut = setInterval(() => {
-                    images.changeImages(collection.right);
-                }, 500);
+                    images.changeImages(collection.right, objectsBefore);
+                }, 1000);
             }
         } else {
             if (this.mousePosition !== 0) {
                 this.mousePosition = 0;
                 clearInterval(domElements.timeOut)
                 images.count = 0;
+                let objectsBefore  = collection.left.length;
                 domElements.timeOut = setInterval(() => {
-                    images.changeImages(collection.center);
-                }, 500);
+                    images.changeImages(collection.center, objectsBefore);
+                }, 1000);
             }
         }
     },

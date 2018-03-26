@@ -81,5 +81,7 @@ main div {
 ul {
   width: 33.3%;
   padding: 0; }
+  ul li {
+    color: #FFF; }
 
 /*# sourceMappingURL=style.css.map */

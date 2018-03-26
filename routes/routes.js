@@ -21,8 +21,16 @@ const collection = {
             return obj.panAngle >= -5 && obj.panAngle <= 5 && obj.roll >= -5 && obj.roll <= 10;
         });
         return filteredCenter
-    }
+    },
+    allSorted: []
 }
+
+let dataAll = {
+    left: [],
+    center: [],
+    right: [],
+    allSorted: []
+};
 
 const sparqlquery = `
         PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
@@ -94,18 +102,29 @@ function faceScan(images) {
             return response.json();
         }).then(data => {
             countDone += 1;
+
             // app.loadingText.innerHTML = countDone + '/100 images scanned';
             if (data.length > 0 && data.length < 2) {
                 let face = {};
                 face.age = data[0].faceAttributes.age;
+                face.gender = data[0].faceAttributes.gender;
+                face.smile = data[0].faceAttributes.smile;
+                face.glasses = data[0].faceAttributes.glasses;
+                face.facialHair = data[0].faceAttributes.facialHair;
                 face.panAngle = data[0].faceAttributes.headPose.yaw;
                 face.roll = data[0].faceAttributes.headPose.roll;
                 face.img = obj.url;
                 faces.push(face)
             }
             if (images.length === countDone) {
-                console.log(faces)
                 collection.all = faces;
+                dataAll = {
+                    left: collection.filterLeft(),
+                    center: collection.filterCenter(),
+                    right: collection.filterRight(),
+                    allSorted: collection.filterLeft().concat(collection.filterCenter(), collection.filterRight())
+                }
+
             }
             //render first three items
         }).catch(err => {
@@ -117,23 +136,17 @@ function faceScan(images) {
     }, 150);
 }
 
-router.get('/', function (req, res, next) {
-    const dataAll = {
-        all: collection.all,
-        left: collection.filterLeft(),
-        center: collection.filterCenter(),
-        right: collection.filterRight(),
-    }
+router.get('/', function (req, res) {
     res.render('index', {data: dataAll});
 });
 
-router.get('/api', function (req, res, next) {
-    const dataAll = {
-        left: collection.filterLeft(),
-        center: collection.filterCenter(),
-        right: collection.filterRight(),
-    }
+router.get('/api', function (req, res) {
 res.json(dataAll)
 });
+
+router.get('/portret/:nummer', function(req, res) {
+    res.render('details', {data: dataAll.allSorted[req.params.nummer]});
+});
+
 
 module.exports = router;

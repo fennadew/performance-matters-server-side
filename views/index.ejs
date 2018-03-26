@@ -1,35 +1,42 @@
 <%- include('head.ejs') %>
-<main></main>
-<noscript>
-<h1>City portrets sorted on head position</h1>
-    <div>
-        <h2>Looking left</h2>
-        <h2>Looking center</h2>
-        <h2>Looking right</h2>
-    </div>
-    <div>
-        <ul>
-            <% for(var i = 0; i < data.left.length; i++) { %>
-            <li>
-                <img src="<%= data.left[i].img %>">
-            </li>
-            <% } %>
-        </ul>
-        <ul>
-            <% for(var i = 0; i < data.center.length; i++) { %>
-            <li>
-                <img src="<%= data.center[i].img %>">
-            </li>
-            <% } %>
-        </ul>
-        <ul>
-            <% for(var i = 0; i < data.right.length; i++) { %>
-            <li>
-                <img src="<%= data.right[i].img %>">
-            </li>
-            <% } %>
-        </ul>
-    </div>
-</noscript>
+<main class="index"></main>
+    <noscript>
+        <h1>City portrets sorted on head position</h1>
+        <div>
+            <h2>Looking left</h2>
+            <h2>Looking center</h2>
+            <h2>Looking right</h2>
+        </div>
+        <div>
+            <ul>
+                <% for(var i = 0; i < data.left.length; i++) { %>
+                <li>
+                    <a href="/portret/<%= i %>">
+                        <img src="<%= data.left[i].img %>">
+                    </a>
+                </li>
+                <% } %>
+            </ul>
+            <ul>
+                <% for(var i = 0; i < data.center.length; i++) { %>
+                <li>
+                    <a href="/portret/<%= data.left.length + i %>">
+                        <img src="<%= data.center[i].img %>">
+                    </a>
+                </li>
+                <% } %>
+            </ul>
+            <ul>
+                <% for(var i = 0; i < data.right.length; i++) { %>
+                <li>
+                    <a href="/portret/<%= data.left.length + data.center.length  + i %>">
+                        <img src="<%= data.right[i].img %>">
+                    </a>
+                </li>
+                <% } %>
+            </ul>
+        </div>
+    </noscript>
+
 
 <%- include('foot.ejs') %>

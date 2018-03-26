@@ -14,7 +14,6 @@ const api = {
                 // Success handler
                 const response = await fetch(reqSettings);
                 data = await response.json();
-
                 mouse.onMouseMovement(data);
 
 

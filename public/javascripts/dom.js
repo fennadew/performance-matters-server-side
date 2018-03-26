@@ -5,6 +5,7 @@ const domElements = {
     loadingText: document.querySelector('.text'),
     heading: document.createElement("h1"),
     div: document.createElement("div"),
+    link:  document.createElement("a"),
     placeholder: document.createElement("img"),
     container: document.querySelector('main'),
 }

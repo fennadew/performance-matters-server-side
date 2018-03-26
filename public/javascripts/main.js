@@ -5,9 +5,11 @@ const domElements = require('./dom.js');
     const app = {
         init() {
             domElements.placeholder.setAttribute("class", "placeholder");
+            domElements.link.setAttribute("class", "profile-link");
             domElements.heading.appendChild(document.createTextNode("Move your mouse"));
             domElements.container.appendChild(domElements.heading);
-            domElements.div.appendChild(domElements.placeholder);
+            domElements.link.appendChild(domElements.placeholder);
+            domElements.div.appendChild(domElements.link);
             domElements.container.appendChild(domElements.div);
             api.handleRequest()
             window.addEventListener('resize', (event) => {
@@ -15,7 +17,9 @@ const domElements = require('./dom.js');
             });
         }
     }
+    if (domElements.container.classList.contains('index')) {
+        app.init();
+    }
 
-    app.init();
 })();
 

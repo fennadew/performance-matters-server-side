@@ -5,8 +5,7 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const sassMiddleware = require('node-sass-middleware');
 const compression = require('compression');
-const users = require('./routes/users');
-const api = require('./routes/api');
+const routes = require('./routes/routes');
 require('dotenv').config({ path: './vars.env'})
 const app = express();
 
@@ -38,9 +37,7 @@ app.use(sassMiddleware({
 }));
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', api);
-app.use('/users', users);
-app.use('/api', api);
+app.use('/', routes);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

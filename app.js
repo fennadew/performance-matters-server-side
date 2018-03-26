@@ -5,7 +5,6 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const sassMiddleware = require('node-sass-middleware');
 const compression = require('compression');
-const index = require('./routes/index');
 const users = require('./routes/users');
 const api = require('./routes/api');
 require('dotenv').config({ path: './vars.env'})

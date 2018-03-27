@@ -7,6 +7,7 @@ const domElements = {
     div: document.createElement("div"),
     link:  document.createElement("a"),
     placeholder: document.createElement("img"),
+    frame: document.createElement("img"),
     container: document.querySelector('main'),
 }
 

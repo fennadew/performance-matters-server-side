@@ -6,8 +6,10 @@ const domElements = require('./dom.js');
         init() {
             domElements.placeholder.setAttribute("class", "placeholder");
             domElements.link.setAttribute("class", "profile-link");
+            domElements.frame.setAttribute("src", "images/frame.png");
             domElements.heading.appendChild(document.createTextNode("Move your mouse"));
             domElements.container.appendChild(domElements.heading);
+            domElements.link.appendChild(domElements.frame);
             domElements.link.appendChild(domElements.placeholder);
             domElements.div.appendChild(domElements.link);
             domElements.container.appendChild(domElements.div);

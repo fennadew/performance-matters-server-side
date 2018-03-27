@@ -1,0 +1,19 @@
+{
+  "name": "City portrets on mousemovement",
+  "short_name": "City portrets",
+  "description": null,
+  "dir": "auto",
+  "lang": "en-US",
+  "display": "standalone",
+  "orientation": "portrait",
+  "start_url": "/?homescreen=1",
+  "background_color": "#FFF",
+  "theme_color": "#000",
+  "icons": [
+    {
+      "src": "images/mouse-big.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ]
+}

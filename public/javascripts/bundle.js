@@ -58,7 +58,6 @@ const images = {
     changeImages(obj, totalPosition) {
         let img = document.querySelector(".placeholder");
         let link = document.querySelector(".profile-link");
-        console.log(typeof totalPosition)
         link.href = /portret/ + (totalPosition + this.count);
         img.src = obj[this.count].img;
         this.count += 1;

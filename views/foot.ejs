@@ -1,4 +1,9 @@
 </body>
 
-<script src="../javascripts/bundle.js"></script>
+<script src="../javascripts/dist/bundle.js"></script>
+<script>
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('/sw.js');
+    }
+</script>
 </html>

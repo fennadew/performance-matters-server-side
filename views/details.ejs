@@ -1,6 +1,10 @@
 <%- include('head.ejs') %>
 <main>
-    <img src="<%= data.img %>">
+    <a class="back" href="/"><img src="/images/back.png" alt="back"></a>
+    <div>
+        <img src="/images/frameround.png" class="frame">
+        <img class="placeholder" src="<%= data.img %>">
+    </div>
     <ul>
         <li>Age: <%= data.age %> </li>
         <li>Gender: <%= data.age %> </li>

@@ -65,6 +65,8 @@ MIT © Fenna de Wilde
 
 [Compression](https://github.com/expressjs/compression)
 
+[Icons](flaticon.com)
+
 [Wall](https://desktopwalls.net/wp-content/uploads/2015/02/White%20Wall%20Texture%20Cracks%20Grunge%20Desktop%20Wallpaper.jpg)
 
 [Frame](http://pluspng.com/png-54437.html)

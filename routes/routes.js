@@ -91,7 +91,6 @@ function faceScan(images) {
     let i = 0;
     const interval = setInterval(function () {
         let obj = images[i];
-        console.log(obj);
         fetch(uriBase + "?" + url, {
             method: 'POST',
             body: JSON.stringify(obj), // must match 'Content-Type' header
@@ -103,7 +102,6 @@ function faceScan(images) {
             return response.json();
         }).then(data => {
             countDone += 1;
-
             // app.loadingText.innerHTML = countDone + '/100 images scanned';
             if (data.length > 0 && data.length < 2) {
                 let face = {};
@@ -116,6 +114,7 @@ function faceScan(images) {
                 face.roll = data[0].faceAttributes.headPose.roll;
                 face.img = obj.url;
                 faces.push(face)
+                console.log(face);
             }
             if (images.length === countDone) {
                 collection.all = faces;
@@ -125,8 +124,6 @@ function faceScan(images) {
                     right: collection.filterRight(),
                     allSorted: collection.filterLeft().concat(collection.filterCenter(), collection.filterRight())
                 }
-                console.log(dataAll);
-
             }
             //render first three items
         }).catch(err => {

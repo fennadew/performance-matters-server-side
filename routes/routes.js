@@ -124,6 +124,7 @@ function faceScan(images) {
                     right: collection.filterRight(),
                     allSorted: collection.filterLeft().concat(collection.filterCenter(), collection.filterRight())
                 }
+                console.log(dataAll);
 
             }
             //render first three items

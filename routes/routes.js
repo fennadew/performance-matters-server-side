@@ -102,7 +102,7 @@ function faceScan(images) {
             return response.json();
         }).then(data => {
             countDone += 1;
-            // app.loadingText.innerHTML = countDone + '/100 images scanned';
+            console.log(data)
             if (data.length > 0 && data.length < 2) {
                 let face = {};
                 face.age = data[0].faceAttributes.age;

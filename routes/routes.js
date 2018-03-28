@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const fetch = require("node-fetch");
+require('dotenv').config({ path: './vars.env'})
 
 const collection = {
     all: [],

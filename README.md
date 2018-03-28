@@ -15,13 +15,13 @@ Portrets from the city archive of Amsterdam follow the direction of the mouse by
 
 ## NPM scripts, CommonJS & Browserify
 You can find the npm scripts in the `package.json` file under "scripts". When you run `npm start` your the terminal, `node app.js` will be executed.
-`build-js` is a custom npm script so you need to run `npm run build-js` in your terminal. It will run browserify. This looks up all the scripts in the public/javascripts folder and bundles all modules in public/javascripts/bundle.js.
-Browserify lets you require('modules') in the browser by bundling up all of your dependencies. Node does that automatically by using CommonJS.
+`build` is a custom npm script so you need to run `npm run build` in your terminal. It will run browserify and babel. This looks up all the scripts in the public/javascripts folder and bundles all modules in public/javascripts/bundle.js.
+Browserify lets you require('modules') in the browser by bundling up all of your dependencies. Node does that automatically by using CommonJS. Babel will minify the JavaScript
 
   "scripts": {
 
     "start": "node app.js",
-    "build-js": "browserify public/javascripts/*.js > public/javascripts/bundle.js"
+    "build": "npm run build:js",
 
   }
 

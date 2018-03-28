@@ -73,6 +73,7 @@ fetch(queryurl)
 
 function faceScan(images) {
     const subscriptionKey = process.env.SUB_KEY;
+    console.log(subscriptionKey)
     const uriBase = "https://westeurope.api.cognitive.microsoft.com/face/v1.0/detect/";
 
     const params = {

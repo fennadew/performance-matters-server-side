@@ -72,7 +72,7 @@ fetch(queryurl)
 
 
 function faceScan(images) {
-    const subscriptionKey = process.env.SUB_KEY;
+    const subscriptionKey = 'df6dc32e785e451492fa214aa1f85fe7';
     const uriBase = "https://westeurope.api.cognitive.microsoft.com/face/v1.0/detect/";
 
     const params = {
@@ -111,7 +111,11 @@ function faceScan(images) {
                 face.facialHair = data[0].faceAttributes.facialHair;
                 face.panAngle = data[0].faceAttributes.headPose.yaw;
                 face.roll = data[0].faceAttributes.headPose.roll;
-                face.img = obj.url;
+                const a = obj.url;
+                const b = "s";
+                const position = 4;
+                const output = [a.slice(0, position), b, a.slice(position)].join('');
+                face.img = output;
                 faces.push(face)
             }
             if (images.length === countDone) {

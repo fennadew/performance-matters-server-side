@@ -40,6 +40,11 @@ App listens on `http://localhost:8000/`.
 
 * To bundle the JavaScript files into bundle.js run `npm run bundle-js`.
 
+## Best practise
+* Use semicolons
+* Write in ES6
+* Use const if possible, let when needed.
+
 ## To do
 *   [x] Add service worker for offline usage
 *   [x] Add gzip

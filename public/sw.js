@@ -1,6 +1,6 @@
 self.addEventListener('install', (event) => {
     event.waitUntil(
-        caches.open('bs-v1-core')
+        caches.open('portret-v1-core')
             .then(cache => cache.addAll([
                 '/javascripts/dist/bundle.js',
                 '/stylesheets/style.css',
@@ -22,7 +22,7 @@ self.addEventListener('fetch', event => {
         );
     } else {
         event.respondWith(
-            fetch(request)
+            caches.match(request)
                 .then(response => cacheFile(request, response))
                 .catch(err => fetchCoreFile(request.url))
                 .catch(err => fetchCoreFile('/offline/'))
@@ -31,27 +31,36 @@ self.addEventListener('fetch', event => {
 });
 
 function fetchCoreFile(url) {
-    return caches.open('bs-v1-core')
+    return caches.open('portret-v1-core')
         .then(cache => cache.match(url))
         .then(response => response ? response : Promise.reject());
 }
 
 function getCachedPage(request) {
-    return caches.open('bs-v1-pages')
+    return caches.open('portret-v1-pages')
         .then(cache => cache.match(request))
         .then(response => response ? response : Promise.reject());
 }
 
 function cachePage(request, response) {
     const clonedResponse = response.clone();
-    caches.open('bs-v1-pages')
+    caches.open('portret-v1-pages')
         .then(cache => cache.put(request, clonedResponse));
     return response;
 }
 
+// Met hulp van Alex van der Wal
 function cacheFile(request, response) {
-    const clonedResponse = response.clone();
-    caches.open('bs-v1-core')
-        .then(cache => cache.put(request, clonedResponse));
-    return response;
+    if (response) {
+        return response
+    } else {
+        return fetch(request)
+            .then((newResponse) => {
+                return caches.open('portret-v1-core')
+                    .then((cache) => {
+                        cache.put(request.url, newResponse.clone())
+                        return newResponse
+                    })
+            })
+    }
 }

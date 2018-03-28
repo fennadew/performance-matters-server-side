@@ -62,6 +62,7 @@ fetch(queryurl)
             image.url = rows[i]['img']['value'];
             images.push(image);
         }
+        console.log(images);
         faceScan(images);
         // res.json(images);
     })

@@ -62,7 +62,6 @@ fetch(queryurl)
             image.url = rows[i]['img']['value'];
             images.push(image);
         }
-        console.log(images);
         faceScan(images);
         // res.json(images);
     })
@@ -92,6 +91,7 @@ function faceScan(images) {
     let i = 0;
     const interval = setInterval(function () {
         let obj = images[i];
+        console.log(obj);
         fetch(uriBase + "?" + url, {
             method: 'POST',
             body: JSON.stringify(obj), // must match 'Content-Type' header

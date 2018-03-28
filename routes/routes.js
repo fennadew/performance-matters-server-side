@@ -1,7 +1,6 @@
 const express = require('express');
 const router = express.Router();
 const fetch = require("node-fetch");
-require('dotenv').config({ path: './vars.env'})
 
 const collection = {
     all: [],
@@ -73,8 +72,7 @@ fetch(queryurl)
 
 
 function faceScan(images) {
-    const subscriptionKey = 'df6dc32e785e451492fa214aa1f85fe7';
-    console.log(subscriptionKey)
+    const subscriptionKey = process.env.SUB_KEY;
     const uriBase = "https://westeurope.api.cognitive.microsoft.com/face/v1.0/detect/";
 
     const params = {
@@ -104,7 +102,6 @@ function faceScan(images) {
             return response.json();
         }).then(data => {
             countDone += 1;
-            console.log(data)
             if (data.length > 0 && data.length < 2) {
                 let face = {};
                 face.age = data[0].faceAttributes.age;
@@ -116,7 +113,6 @@ function faceScan(images) {
                 face.roll = data[0].faceAttributes.headPose.roll;
                 face.img = obj.url;
                 faces.push(face)
-                console.log(face);
             }
             if (images.length === countDone) {
                 collection.all = faces;
@@ -130,7 +126,6 @@ function faceScan(images) {
             //render first three items
         }).catch(err => {
             // Error :(
-            console.log(err);
         });
         i++;
         if (i === images.length) clearInterval(interval);

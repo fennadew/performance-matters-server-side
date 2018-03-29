@@ -10,8 +10,6 @@ require('dotenv').config({ path: './vars.env'})
 const app = express();
 const favicon = require('serve-favicon');
 
-const redirectToHTTPS = require('express-http-to-https').redirectToHTTPS
-app.use(redirectToHTTPS([/localhost:(\d{4})/], [/\/insecure/]));
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

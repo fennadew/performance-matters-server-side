@@ -49,3 +49,11 @@ This is the biggest improvement so far. The only thing is that the website shoul
 
 <b>After</b>
 ![Example webapp](https://github.com/fennadew/performance-matters-server-side/blob/master/public/images/serviceworker.png)
+
+### AUDIT
+![audit](https://github.com/fennadew/performance-matters-server-side/blob/master/public/images/perf.png)
+
+#### TO DO
+* [ ] Add icons for manifest
+* [ ] Add splash screen
+* [ ] Redirect HTTP to HTTPS

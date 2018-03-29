@@ -1,6 +1,6 @@
 # Portrets following mouse
 
-[Live link](http://portret-follow-mouse.herokuapp.com/)
+[Live link](https://protected-coast-76221.herokuapp.com/)
 
 Portrets from the city archive of Amsterdam follow the direction of the mouse by looking at it. The face position of the portrets is detected with the [Microsoft face API](https://azure.microsoft.com/en-us/services/cognitive-services/face/).
 *   [x] Works without JavaScript

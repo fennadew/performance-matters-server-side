@@ -8,6 +8,10 @@ const compression = require('compression');
 const routes = require('./routes/routes');
 require('dotenv').config({ path: './vars.env'})
 const app = express();
+const favicon = require('serve-favicon');
+
+const redirectToHTTPS = require('express-http-to-https').redirectToHTTPS
+app.use(redirectToHTTPS([/localhost:(\d{4})/], [/\/insecure/]));
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -25,6 +29,7 @@ function shouldCompress (req, res) {
     return compression.filter(req, res)
 }
 
+app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));

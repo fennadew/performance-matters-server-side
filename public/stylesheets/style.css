@@ -115,6 +115,21 @@ main div {
   margin: auto;
   transform: scale(0.7) translatey(-20%); }
 
+@media screen and (max-width: 800px) {
+  h1 {
+    font-size: 30px; }
+  main div {
+    width: 70%;
+    margin-top: 40px;
+    height: 40vh;
+    transform: none; }
+  .frame {
+    display: none; }
+  .placeholder {
+    width: 100%;
+    clip-path: none;
+    min-height: 100%; } }
+
 ul {
   width: 33.3%;
   padding: 0; }
